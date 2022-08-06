@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!--Load the AJAX API-->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="/script/cpuchart.js"></script>
+  <script src="/script/gpuchart.js"></script>
+  <script src="/script/memchart.js"></script>
+</head>
+
+<body>
+  <button onclick="start()">Event Start</button>
+  <button onclick="end()">Event End</button>
+  <!--Div that will hold the pie chart-->
+  <div id="chart_div"></div>
+  <div id="chart_div2"></div>
+  <div id="chart_div3"></div>
+
+  <script>
+    $.ajax({
+      type: 'get',
+      url: '/eventrecord',
+      success: (eventdate) => {
+        cpudraw(eventdate);
+        gpudraw(eventdate);
+        memdraw(eventdate);
+        //console.log(eventdate);
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
+
+    let recordtime = {}
+
+    let start = () => {
+      recordtime.start = new Date();
+      $.ajax({
+        type: 'POST',
+        url: '/eventstart',
+        success: (result) => {  //result = 콜백 함수
+          console.log(result)
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
+    }
+
+    let end = () => {
+      recordtime.end = new Date();
+      $.ajax({
+        type: 'POST',
+        url: '/eventend',
+        data: {
+          start: recordtime.start,
+          end: recordtime.end
+        },
+        success: (result) => {  //result = 콜백 함수
+          console.log(result)
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
+    }
+
+
+
+  </script>
+</body>
+
+</html>
