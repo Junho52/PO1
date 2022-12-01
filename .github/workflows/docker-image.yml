@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest  #동작할 시스템에 대한 설정
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v3   #노드 셋업
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3   #노드 셋업
         with:
           node-version: 16
-    
-    - name: npm install          #의존성 설치
-      run: npm install
-    
-    - name: dockerhub login
-      run: echo ${{ secrets.DOCKERHUB_PW }} | docker login -u ${{ secrets.DOCKERHUB_ID }} --password-stdin
+      
+      - name: npm install          #의존성 설치
+        run: npm install
+      
+      - name: dockerhub login
+        run: echo ${{ secrets.DOCKERHUB_PW }} | docker login -u ${{ secrets.DOCKERHUB_ID }} --password-stdin
 
-    - name: Docker MAKE IMAGE
-      run: docker build -t po1/Po1:latest .
+      - name: Docker MAKE IMAGE
+        run: docker build -t po1/Po1:latest .
 
-    - name: Docker PUSH
-      run: docker push po1/Po1:latest
+      - name: Docker PUSH
+        run: docker push po1/Po1:latest
