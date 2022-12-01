@@ -25,7 +25,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PW }} | docker login -u ${{ secrets.DOCKERHUB_ID }} --password-stdin
 
       - name: Docker MAKE IMAGE
-        run: docker build -t po1/Po1:latest .
+        run: docker build -t alaldlftlr12/Po1:latest .
 
       - name: Docker PUSH
-        run: docker push po1/Po1:latest
+        run: docker push alaldlftlr12/Po1:latest
