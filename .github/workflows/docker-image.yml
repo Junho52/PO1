@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: PO1
 
 on:
   push:
