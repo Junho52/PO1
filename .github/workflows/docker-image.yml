@@ -21,8 +21,11 @@ jobs:
       - name: npm install          #의존성 설치
         run: npm install
       
-      - name: dockerhub login
-        run: echo ${{ secrets.DOCKERHUB_PW }} | docker login -u ${{ secrets.DOCKERHUB_ID }} --password-stdin
+      -name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_ID }}
+          password: ${{ secrets.DOCKERHUB_PW }}
 
       - name: Docker MAKE IMAGE
         run: docker build -t alaldlftlr12/Po1:latest .
