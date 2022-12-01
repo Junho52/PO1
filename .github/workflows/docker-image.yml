@@ -32,7 +32,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PW }}
 
     - name: Docker MAKE IMAGE
-      run: docker build -t alaldlftlr12/Po1:latest .
+      run: docker build -t alaldlftlr12/po1:latest .
 
     - name: Docker PUSH
-      run: docker push alaldlftlr12/Po1:latest
+      run: docker push alaldlftlr12/po1:latest
