@@ -1,6 +1,6 @@
 const eventrecords = require('../schema/eventrecords')
 
-const startproc = () => {
+const startproc = async () => {
   const data = {
     event: 'start',
     nowdate: new Date()
