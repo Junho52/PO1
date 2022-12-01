@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest  #동작할 시스템에 대한 설정
 
     steps:
-    # - uses: actions/checkout@v3    #  
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v3   #노드 셋업
         with:
           node-version: 16
